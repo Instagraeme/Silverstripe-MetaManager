@@ -88,7 +88,7 @@ if(!$disable_meta_manager){
 	 * Position checkbox at tab e.g. : "Root.Content.Main" or "Root.Content.Metadata" (default)
 	 * @param string $checkbox_tab
 	 */
-	MetaManagerDataDecorator::set_checkbox_tab("Root.Content.Metadata");
+	MetaManagerDataDecorator::set_checkbox_tab("Root.Main");
 	
 	/**
 	 * Position checkbox above e.g. : "Content", "Title" or "MenuTitle"

@@ -11,7 +11,7 @@
  * @Email info@axyrmedia.nl
  */ 
 
-class MetaManagerDataDecorator extends SiteTreeDecorator { 
+class MetaManagerDataDecorator extends SiteTreeExtension { 
 	
 	/**
 	 * @var int 
@@ -93,7 +93,7 @@ class MetaManagerDataDecorator extends SiteTreeDecorator {
 	 * Set the default state of checkbox in content tab
 	 * @param int $checkbox_state 
 	 */
-	public function set_checkbox_state($var) {
+	public static function set_checkbox_state($var) {
 		if ($var) self::$checkbox_state = $var;
 	}
 	
@@ -101,7 +101,7 @@ class MetaManagerDataDecorator extends SiteTreeDecorator {
 	 * Show the update checkbox
 	 * @param bool $show_checkbox
 	 */
-	public function set_show_checkbox($var) {
+	public static function set_show_checkbox($var) {
 		if ($var) self::$show_checkbox = $var;
 	}
 	
@@ -109,7 +109,7 @@ class MetaManagerDataDecorator extends SiteTreeDecorator {
 	 * Position checkbox at tab e.g. : "Root.Content.Main" or "Root.Content.MetaData" (default)
 	 * @param string $checkbox_tab
 	 */
-	public function set_checkbox_tab($var) {
+	public static function set_checkbox_tab($var) {
 		if ($var) self::$checkbox_tab = $var;
 	}
 	/**
@@ -117,7 +117,7 @@ class MetaManagerDataDecorator extends SiteTreeDecorator {
 	 * Leave empty to show the checkbox below the Contentfield
 	 * @param string $checkbox_pos
 	 */
-	public function set_checkbox_pos($var) {
+	public static function set_checkbox_pos($var) {
 		if ($var) self::$checkbox_pos = $var;
 	}
 	
@@ -125,7 +125,7 @@ class MetaManagerDataDecorator extends SiteTreeDecorator {
 	 * Set the amount of keywords to insert in the MetaKeywords field
 	 * @param int $keyword_amount 
 	 */
-	public function set_keyword_amount($var) {
+	public static function set_keyword_amount($var) {
 		if ($var) self::$keyword_amount = $var;
 	}
 	
@@ -133,7 +133,7 @@ class MetaManagerDataDecorator extends SiteTreeDecorator {
 	 * Set the minimum wordlength for MetaKeywords
 	 * @param int $min_word_char 
 	 */
-	public function set_min_word_char($var) {
+	public static function set_min_word_char($var) {
 		if ($var) self::$min_word_char = $var;
 	}
 	
@@ -141,7 +141,7 @@ class MetaManagerDataDecorator extends SiteTreeDecorator {
 	 * Set the words to exlude seperate with comma
 	 * @param string $exclude_words 
 	 */
-	public function set_exclude_words($var) {
+	public static function set_exclude_words($var) {
 		if ($var) self::$exclude_words = $var;
 	}
 	
@@ -149,7 +149,7 @@ class MetaManagerDataDecorator extends SiteTreeDecorator {
 	 * Set wether to update the MetaTitle with Pagetitle
 	 * @param int $update_meta_title 
 	 */
-	public function set_update_meta_title($var) {
+	public static function set_update_meta_title($var) {
 		if ($var) self::$update_meta_title = $var;
 	}
 	
@@ -157,7 +157,7 @@ class MetaManagerDataDecorator extends SiteTreeDecorator {
 	 * Set wether to hide the ExtraMeta field
 	 * @param int $hide_extra_meta 
 	 */
-	public function set_hide_extra_meta($var) {
+	public static function set_hide_extra_meta($var) {
 		if ($var) self::$hide_extra_meta = $var;
 	}
 	
@@ -165,7 +165,7 @@ class MetaManagerDataDecorator extends SiteTreeDecorator {
 	 * Set wether to disable the annoying update url popup
 	 * @param int $disable_update_popup  
 	 */
-	public function set_disable_update_popup($var) {
+	public static function set_disable_update_popup($var) {
 		if ($var) self::$disable_update_popup = $var;
 	}
 	
@@ -173,7 +173,7 @@ class MetaManagerDataDecorator extends SiteTreeDecorator {
 	 * Set wether to update the urlsegment
 	 * @param int $update_url  
 	 */
-	public function set_update_url($var) {
+	public static function set_update_url($var) {
 		if ($var) self::$update_url = $var;
 	}
 	
@@ -181,7 +181,7 @@ class MetaManagerDataDecorator extends SiteTreeDecorator {
 	 * Set wether to update the metadesc
 	 * @param int $update_meta_desc  
 	 */
-	public function set_update_meta_desc($var) {
+	public static function set_update_meta_desc($var) {
 		if ($var) self::$update_meta_desc = $var;
 	}
 	
@@ -189,7 +189,7 @@ class MetaManagerDataDecorator extends SiteTreeDecorator {
 	 * Set MetaDescription length
 	 * @param int $meta_desc_length (max 255 by SS default) 
 	 */
-	public function set_meta_desc_length($var) {
+	public static function set_meta_desc_length($var) {
 		if ($var) self::$meta_desc_length = $var;
 	}
 	
@@ -197,7 +197,7 @@ class MetaManagerDataDecorator extends SiteTreeDecorator {
 	 * Set wether to update the metakeywords
 	 * @param int $update_meta_keys  
 	 */
-	public function set_update_meta_keys($var) {
+	public static function set_update_meta_keys($var) {
 		if ($var) self::$update_meta_keys = $var;
 	}
 	
@@ -205,20 +205,16 @@ class MetaManagerDataDecorator extends SiteTreeDecorator {
 	 * Show wich Meta fields wil be updated
 	 * @param bool $show_meta_messages 
 	 */
-	 public function set_show_meta_messages($var) {
+	 public static function set_show_meta_messages($var) {
 		if ($var) self::$show_meta_messages = $var;
 	}
 
-    function extraStatics() {
-		return array(
-			'db' => array(
-				'GenerateMetaData' => 'Int',
-			),
-            'defaults' => array(
-				'GenerateMetaData' => -1,
-			),
-		);
-	}
+	static $db = array(
+			'GenerateMetaData' => 'Int',
+			);
+	static $defaults = array(
+			'GenerateMetaData' => -1,
+			);
 	/**
 	 * Compose string to show wich fields are set to auto update
 	 * @param string $updated_field_string  
@@ -247,17 +243,17 @@ class MetaManagerDataDecorator extends SiteTreeDecorator {
 	 */
 	public function getCMSFields() { 
 		$fields = parent::getCMSFields();
-		$this->extend('updateCMSFields', $fields);	
+		$this->extend('updateCMSFields', $fields);
 		return $fields;
 	}
 	
-	public function updateCMSFields(FieldSet &$fields) {
+	public function updateCMSFields(FieldList $fields) {
 		//Set default
 		if($this->owner->GenerateMetaData == -1){
 			$this->owner->GenerateMetaData = self::$checkbox_state;
 		}
 		if(empty(self::$checkbox_tab)) {
-			self::$checkbox_tab = 'Root.Content.Metadata';
+			self::$checkbox_tab = 'Root.Metadata';
 		}
 		if(self::$show_checkbox == 1){
 			$fields->addFieldToTab(self::$checkbox_tab, new CheckboxField('GenerateMetaData', _t('MetaManager.GENERATEMETADATA','Generate Meta-data automatically from the page content') . self::updatedFields() , $this->owner->GenerateMetaData), self::$checkbox_pos);
@@ -265,16 +261,16 @@ class MetaManagerDataDecorator extends SiteTreeDecorator {
 			$fields->addFieldToTab(self::$checkbox_tab, new HiddenField('GenerateMetaData', _t('MetaManager.GENERATEMETADATA','Generate Meta-data automatically from the page content'), $this->owner->GenerateMetaData), self::$checkbox_pos);
 		}
 		if(self::$hide_extra_meta == 1){
-			$fields->removeFieldsFromTab('Root.Content.Metadata', array('ExtraMeta'));	
+			$fields->removeFieldsFromTab('Root.Main', array('ExtraMeta'));	
 		}	
-		if(self::$disable_update_popup == 1){
+	/*	if(self::$disable_update_popup == 1){
 			Requirements::clear('sapphire/javascript/UpdateURL.js');
 			
 			if(self::$update_url == 1){
 				Requirements::javascript('metamanager/javascript/UpdateURL.js');
 			}
 		}
-		
+		*/
 	}
 	
 	/**
@@ -330,7 +326,7 @@ class MetaManagerDataDecorator extends SiteTreeDecorator {
 		
 		if(self::$update_meta_title == 1 || self::$update_meta_desc == 1 || self::$update_meta_keys == 1){
 			// TODO : find a nicer way to reload the page 
-			LeftAndMain::ForceReload ();
+			//LeftAndMain::ForceReload ();
 		}
 		parent::onAfterWrite ();
 	}
