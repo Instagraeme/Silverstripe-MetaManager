@@ -41,7 +41,7 @@ class MetaManagerDataDecorator extends SiteTreeExtension {
 	/**
 	 * @var string
 	 */
-	protected static $checkbox_pos = '';
+	protected static $checkbox_pos = 'MetaTitle';
 	
 	/**
 	 * @var bool
